@@ -112,7 +112,6 @@ public class ElbonianArabicConverter {
         for (char c : number.toCharArray()){
             if (! (c == 'M'
                     || c == 'm'
-                    || c == 'm'
                     || c == 'D'
                     || c == 'B'
                     || c == 'C'
@@ -211,8 +210,6 @@ public class ElbonianArabicConverter {
             }
             if (relValue.get(c) > relValue.get(prev)){
                 return false;
-                // TODO Might have to add another something inside this to be able to catch the 'K'
-                // TODO The letter K would never appear before C, x, B or L but would appear before X
             }
             prev = c;
         }
@@ -261,8 +258,11 @@ public class ElbonianArabicConverter {
             }else if(val >= 10){
                 ret.append('X');
                 val -= 10;
-            }else if(val >= 5){
+            }else if(val >= 9){
                 ret.append('x');
+                val -= 10;
+            }else if(val >= 5){
+                ret.append('V');
                 val -= 5;
             }else if(val >=4){
                 ret.append('U');
@@ -272,7 +272,6 @@ public class ElbonianArabicConverter {
                 val -= 1;
             }
         }
-        // TODO ask Eric about 'K' before 'x' and why we have to fix that
         String retString = ret.toString();
         return retString;
     }
