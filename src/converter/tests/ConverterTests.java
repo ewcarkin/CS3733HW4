@@ -24,6 +24,24 @@ public class ConverterTests {
         assertEquals(converter.toArabic(), 1);
     }
 
+    @Test
+    public void ArabicToElbonianSampleTest2() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("M");
+        assertEquals(converter.toArabic(), 1000);
+    }
+
+    @Test
+    public void ArabicToElbonianSampleTest3() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("MD");
+        assertEquals(converter.toArabic(), 1500);
+    }
+
+    @Test
+    public void ArabicToElbonianSampleTest4() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("DC");
+        assertEquals(converter.toArabic(), 600);
+    }
+
     @Test(expected = MalformedNumberException.class)
     public void malformedNumberTest() throws MalformedNumberException, ValueOutOfBoundsException {
         throw new MalformedNumberException("TEST");
@@ -124,6 +142,21 @@ public class ConverterTests {
         ElbonianArabicConverter converter = new ElbonianArabicConverter("Lm");
     }
 
+    @Test(expected = MalformedNumberException.class)
+    public void malformedNumberSpaceInMiddle() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("9 9");
+    }
+
+    @Test(expected = MalformedNumberException.class)
+    public void malformedNumber3() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("Ma");
+    }
+
+    @Test(expected = MalformedNumberException.class)
+    public void malformedNumber4() throws MalformedNumberException, ValueOutOfBoundsException {
+        ElbonianArabicConverter converter = new ElbonianArabicConverter("BMC");
+    }
+
 
     @Test(expected = ValueOutOfBoundsException.class)
     public void valueOutOfBoundsTest() throws MalformedNumberException, ValueOutOfBoundsException {
@@ -148,5 +181,7 @@ public class ConverterTests {
         ElbonianArabicConverter converter = new ElbonianArabicConverter("  7");
         assertEquals(converter.toArabic(), 7);
     }
+
+
 
 }
